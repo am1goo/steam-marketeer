@@ -13,7 +13,9 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout
+      uses: actions/checkout@v3
+    
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v3
       with:
@@ -26,4 +28,13 @@ jobs:
       run: |
         cd SteamMarketeer
         dotnet build --configuration Release --no-restore
-        dotnet publish --configuration Release --output ../output --framework net5.0 --runtime win-x64 --self-contained true /p:UseAppHost=true /p:PublishSingleFile=true /p:PublishReadyToRun=false /p:PublishTrimmed=false
+        dotnet publish --configuration Release --output output --framework net5.0 --runtime win-x64 --self-contained true /p:UseAppHost=true /p:PublishSingleFile=true /p:PublishReadyToRun=false /p:PublishTrimmed=false
+        
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: steam-marketeer-release
+        path: |
+          ${{ github.workspace }}\SteamMarketeer\output\*
+          !${{ github.workspace }}\SteamMarketeer\output\*.pdb
+        
