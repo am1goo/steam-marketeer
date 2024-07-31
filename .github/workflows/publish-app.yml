@@ -1,0 +1,29 @@
+name: publish
+
+on:
+  push:
+    branches: [ main ]
+
+env:
+  DOTNET_VERSION: '6.0.401' # The .NET SDK version to use
+
+jobs:
+  publish:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+
+    - name: Install dependencies
+      run: dotnet restore
+      
+    - name: Build
+      run: |
+        cd SteamMarketeer
+        dotnet build --configuration Release --no-restore
+        dotnet publish --configuration Release --output ../output --framework net5.0 --runtime win-x64 --self-contained true /p:UseAppHost=true /p:PublishSingleFile=true /p:PublishReadyToRun=false /p:PublishTrimmed=false
