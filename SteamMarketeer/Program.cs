@@ -17,23 +17,19 @@ namespace SteamMarketeer
  +-+-+-+-+-+ +-+-+-+-+-+-+-+-+-+
 ";
 
+        private static readonly string _thisName = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
+        private static readonly Version _thisVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+
         static async Task Main(string[] args)
         {
-            var thisName = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
-            var thisVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
-
             Logger.Log(ASCII_NAME);
-            Logger.Log($"Version: {thisVersion}");
+            Logger.Log($"Version: {_thisVersion}");
             Logger.Log($"License: MIT");
             Logger.Skip();
 
             if (args.Length <= 0 || !uint.TryParse(args[0], out var appId))
             {
-                Logger.Log("The syntax of the command is incorrect.");
-                Logger.Skip();
-                Logger.Log($"Usage: {thisName}.exe [APP_ID]");
-                Logger.Skip();
-                Logger.Log("APP_ID - it's app id from Steam Store (you can see these numbers in any game url)");
+                ExitWithCode(ExitCode.InvalidArguments);
                 return;
             }
 
@@ -130,6 +126,31 @@ namespace SteamMarketeer
 #if DEBUG
             Console.ReadKey();
 #endif
+        }
+
+        private static void PrintHelp()
+        {
+            Logger.Log("The syntax of the command is incorrect.");
+            Logger.Skip();
+            Logger.Log($"Usage: {_thisName}.exe APP_ID");
+            Logger.Skip();
+            Logger.Log("APP_ID - it's app id from Steam Store (you can see these numbers in any game url)");
+        }
+
+        private static void ExitWithCode(ExitCode exitCode)
+        {
+            switch (exitCode)
+            {
+                case ExitCode.InvalidArguments:
+                    PrintHelp();
+                    break;
+            }
+            Environment.Exit((int)exitCode);
+        }
+
+        private enum ExitCode
+        {
+            InvalidArguments = 1,
         }
     }
 }
