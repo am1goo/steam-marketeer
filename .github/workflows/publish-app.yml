@@ -24,17 +24,31 @@ jobs:
     - name: Install dependencies
       run: dotnet restore
       
-    - name: Build
+    - name: Build (win-x64)
       run: |
         cd SteamMarketeer
         dotnet build --configuration Release --no-restore
-        dotnet publish --configuration Release --output output --framework net5.0 --runtime win-x64 --self-contained true /p:UseAppHost=true /p:PublishSingleFile=true /p:PublishReadyToRun=false /p:PublishTrimmed=false
+        dotnet publish --configuration Release --output output\win-x64 --framework net5.0 --runtime win-x64 --self-contained true /p:UseAppHost=true /p:PublishSingleFile=true /p:PublishReadyToRun=false /p:PublishTrimmed=false
+
+    - name: Build (win-x86)
+      run: |
+        cd SteamMarketeer
+        dotnet build --configuration Release --no-restore
+        dotnet publish --configuration Release --output output\win-x86 --framework net5.0 --runtime win-x86 --self-contained true /p:UseAppHost=true /p:PublishSingleFile=true /p:PublishReadyToRun=false /p:PublishTrimmed=false
         
-    - name: Upload artifacts
+    - name: Upload artifacts (win-x64)
       uses: actions/upload-artifact@v3
       with:
-        name: steam-marketeer-release
+        name: steam-marketeer-win-x64
         path: |
-          ${{ github.workspace }}\SteamMarketeer\output\*
-          !${{ github.workspace }}\SteamMarketeer\output\*.pdb
+          ${{ github.workspace }}\SteamMarketeer\output\win-x64\*
+          !${{ github.workspace }}\SteamMarketeer\output\win-x64\*.pdb
+          
+    - name: Upload artifacts (win-x86)
+      uses: actions/upload-artifact@v3
+      with:
+        name: steam-marketeer-win-x86
+        path: |
+          ${{ github.workspace }}\SteamMarketeer\output\win-x86\*
+          !${{ github.workspace }}\SteamMarketeer\output\win-x86\*.pdb
         
