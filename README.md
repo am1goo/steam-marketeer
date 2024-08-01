@@ -4,19 +4,19 @@ Simple command-line tools to get information about "language coverage" on Steam 
 The coverage is calculated by realtime information in respect with [Steam Hardware & Software Survey](https://store.steampowered.com/hwsurvey/Steam-Hardware-Software-Survey-Welcome-to-Steam)
 
 ### Usage
-`SteamMarketeer.exe [APP_ID]`
+`SteamMarketeer.exe APP_ID`
 #### Options:
 `APP_ID` - app id from Steam Store (you can see these numbers in any game url)
 
 #### Examples:
-Good situation (100% coverage) - [Sin Slayers](https://store.steampowered.com/app/2790000/Sin_Slayers_Reign_of_The_8th/)
+🟢 Good situation _(100% coverage)_ 🟢 - [Sin Slayers](https://store.steampowered.com/app/2790000/Sin_Slayers_Reign_of_The_8th/)
 ```
 > SteamMarketeer.exe 2790000
 ...
 Store page contains all languages, everything is okay!
 ```
 
-Normal situation (98% coverage) - [Streat Fighter 6](https://store.steampowered.com/app/1364780/Street_Fighter_6)
+🟡 Normal situation _(98% coverage)_ 🟡 - [Streat Fighter 6](https://store.steampowered.com/app/1364780/Street_Fighter_6)
 ```
 > SteamMarketeer.exe 1364780
 ...
@@ -31,7 +31,7 @@ Missed: Vietnamese (vn)
 Store page does not contains all languages and covers only 98% of all users, please take a look at this!
 ```
 
-Bad situation (56% coverage) - [Folk Hero](https://store.steampowered.com/app/2342150/Folk_Hero/)
+🔴 Bad situation _(56% coverage)_ 🔴 - [Folk Hero](https://store.steampowered.com/app/2342150/Folk_Hero/)
 ```
 > SteamMarketeer.exe 2342150
 ...
