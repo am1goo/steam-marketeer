@@ -1,6 +1,6 @@
 # Steam Marketeer
 
-Simple command-line tools to get information about "language coverage" on Steam Store page.\
+Simple command-line tool to get information about "language coverage" on Steam Store page.\
 The coverage is calculated by realtime information in respect with [Steam Hardware & Software Survey](https://store.steampowered.com/hwsurvey/Steam-Hardware-Software-Survey-Welcome-to-Steam)
 
 ### Usage
@@ -9,7 +9,7 @@ The coverage is calculated by realtime information in respect with [Steam Hardwa
 `APP_ID` - app id from Steam Store (you can see these numbers in any game url)
 
 #### Examples:
-🟢 Good situation _(100% coverage)_ 🟢 - [Sin Slayers](https://store.steampowered.com/app/2790000/Sin_Slayers_Reign_of_The_8th/)
+🟢 Good situation _(100% coverage)_ 🟢 - [Sin Slayers: Reign of The 8th](https://store.steampowered.com/app/2790000/Sin_Slayers_Reign_of_The_8th/)
 ```
 > SteamMarketeer.exe 2790000
 ...
