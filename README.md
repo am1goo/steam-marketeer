@@ -1,6 +1,6 @@
 # Steam Marketeer
 
-Simple command-line tool to get information about "language coverage" on Steam Store page.\
+Simple command-line tool to get information about "language coverage" on any public Steam Store page.\
 The coverage is calculated by realtime information in respect with [Steam Hardware & Software Survey](https://store.steampowered.com/hwsurvey/Steam-Hardware-Software-Survey-Welcome-to-Steam)
 
 ### Usage
